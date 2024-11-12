@@ -4,25 +4,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import axios from "axios";
 
 import Cards from "./Cards";
+import { useCartandAuth } from "../context/AuthProvider";
 function Freebook() {
-  const [book, setBook] = useState([]);
-  useEffect(() => {
-    const getBook = async () => {
-      try {
-        const res = await axios.get("http://localhost:4001/book");
+  const {book} = useCartandAuth();
+   
 
-        const data = res.data.filter((book) => book.category.length > 1);;
-        console.log(data);
-        setBook(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getBook();
-  }, []);
+//  console.log(book)
 
   var settings = {
     dots: true,
@@ -59,8 +48,11 @@ function Freebook() {
     ],
   };
   return (
-    <>
-      <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4">
+    <div  className=" max-w-screen-2xl container mx-auto md:px-20 px-4">
+        
+      {book.length > 0 ? 
+        
+        <>
         <div>
           <h1 className="font-semibold text-xl pb-2">Free Offered Courses</h1>
           <p>
@@ -77,8 +69,21 @@ function Freebook() {
             ))}
           </Slider>
         </div>
-      </div>
-    </>
+        </>
+      :
+        <>
+    <div className="flex w-9- flex-row gap-4">
+            <div className="skeleton h-70 w-full"></div>
+              <div className="skeleton h-40 w-full"></div>
+  <div className="skeleton h-40 w-full"></div>
+
+
+  
+
+        </div>
+      </>}
+     
+    </div>
   );
 }
 export default Freebook;

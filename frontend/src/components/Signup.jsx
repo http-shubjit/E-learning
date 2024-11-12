@@ -5,9 +5,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 function Signup() {
-  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+ 
   const {
     register,
     handleSubmit,
@@ -26,7 +25,7 @@ function Signup() {
         console.log(res.data);
         if (res.data) {
           toast.success("Signup Successfully");
-          navigate(from, { replace: true });
+          navigate("/");
         }
         localStorage.setItem("Users", JSON.stringify(res.data.user));
       })
@@ -107,7 +106,10 @@ function Signup() {
                 <button className="bg-pink-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">
                   Signup
                 </button>
-                <p className="text-xl">
+               
+              </div>
+            </form>
+             <p className="text-xl">
                   Have account?{" "}
                   <button
                     className="underline text-blue-500 cursor-pointer"
@@ -119,8 +121,6 @@ function Signup() {
                   </button>{" "}
                   <Login />
                 </p>
-              </div>
-            </form>
           </div>
         </div>
       </div>

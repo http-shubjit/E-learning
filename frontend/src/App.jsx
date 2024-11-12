@@ -2,12 +2,13 @@ import React from "react";
 import Home from "./home/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Courses from "./courses/Courses";
+import Cart from './components/Cart'
 import Signup from "./components/Signup";
 import { Toaster } from "react-hot-toast";
-import { useAuth } from "./context/AuthProvider";
+import { useCartandAuth } from "./context/AuthProvider";
 
 function App() {
-  const [authUser, setAuthUser] = useAuth();
+  const {authUser, setAuthUser} = useCartandAuth();
   // console.log(authUser);
   return (
     <>
@@ -19,6 +20,8 @@ function App() {
             element={authUser ? <Courses /> : <Navigate to="/signup" />}
           />
           <Route path="/signup" element={<Signup />} />
+          <Route path='/cart'  element={authUser ? <Cart /> : <Navigate to="/signup" />} />
+
         </Routes>
         <Toaster />
       </div>
