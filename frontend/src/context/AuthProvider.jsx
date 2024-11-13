@@ -4,7 +4,6 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  // Authentication state
   const initialAuthUser = localStorage.getItem("Users");
   const [authUser, setAuthUser] = useState(
     initialAuthUser ? JSON.parse(initialAuthUser) : undefined
@@ -13,7 +12,6 @@ export default function AuthProvider({ children }) {
   // Cart state
 
    const [book, setBook] = useState([]);
-  // const [loadingBooks, setLoadingBooks] = useState(true); // Loading state for books
 
    const [cart, setCart] = useState([]);
 
@@ -21,18 +19,7 @@ export default function AuthProvider({ children }) {
     setCart((prev) => [...prev, item]);
   };
 
-  // // Function to remove items from the cart
-  // const removeFromCart = () => {
-  //   setCartItem((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
-  // };
-
-  // // Function to calculate total cart amount
-  // const getTotalCartAmount = () => {
-  //   const itemPrice = 10; // Assuming each item costs $10
-  //   return cartitem * itemPrice;
-  // };
-
-  // Fetch book data from the API
+ 
   useEffect(() => {
     const getBook = async () => {
       try {

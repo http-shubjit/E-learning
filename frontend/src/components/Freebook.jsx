@@ -73,8 +73,8 @@ function Freebook() {
       :
         <>
     <div className="flex w-9- flex-row gap-4">
-            <div className="skeleton h-70 w-full"></div>
-              <div className="skeleton h-40 w-full"></div>
+        <div className="skeleton h-70 w-full"></div>
+      <div className="skeleton h-40 w-full"></div>
   <div className="skeleton h-40 w-full"></div>
 
 
